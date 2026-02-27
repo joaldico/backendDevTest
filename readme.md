@@ -21,12 +21,12 @@ The system was subjected to a rigorous stress test using **k6**, simulating vari
 #### Visual Evidence (from Grafana):
 As shown in the dashboard below, the system maintained stability even when external mock latency spiked to over 5 seconds:
 
-![Grafana Metrics](./results/image_d68a41.png)
+![Grafana Metrics](./results/Result_1.png)
 
 #### Stress Test Console Output:
 Logs showing the system handling heavy load and the Circuit Breaker/Thread management in action:
 
-![k6 Results](./results/image_d62579.jpg)
+![k6 Results](./results/Result_2.png)
 
 ### 🐳 How to Run
 1. **Build**: `mvn clean install`
