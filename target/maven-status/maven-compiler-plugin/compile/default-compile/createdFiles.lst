@@ -1,0 +1,7 @@
+com/itx/test/application/service/GetSimilarProductsUseCase.class
+com/itx/test/domain/port/ProductRepository.class
+com/itx/test/BackendDevTestApplication.class
+com/itx/test/infrastructure/adapter/ProductHttpClient$1.class
+com/itx/test/infrastructure/adapter/ProductHttpClient.class
+com/itx/test/infrastructure/rest/ProductController.class
+com/itx/test/domain/model/Product.class

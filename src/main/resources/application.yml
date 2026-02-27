@@ -1,0 +1,28 @@
+server:
+  port: 5000
+  address: 0.0.0.0
+
+spring:
+  threads:
+    virtual:
+      enabled: true
+
+external:
+  mocks:
+    base-url: ${MOCKS_URL:http://localhost:3001}
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      productMocks:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowType: TIME_BASED
+        minimumNumberOfCalls: 5
+        waitDurationInOpenState: 5s
+        failureRateThreshold: 50
+  timelimiter:
+    instances:
+      productMocks:
+        timeoutDuration: 2s

@@ -1,0 +1,6 @@
+/home/terraque/4_Josue/backendDevTest/src/main/java/com/itx/test/BackendDevTestApplication.java
+/home/terraque/4_Josue/backendDevTest/src/main/java/com/itx/test/application/service/GetSimilarProductsUseCase.java
+/home/terraque/4_Josue/backendDevTest/src/main/java/com/itx/test/domain/model/Product.java
+/home/terraque/4_Josue/backendDevTest/src/main/java/com/itx/test/domain/port/ProductRepository.java
+/home/terraque/4_Josue/backendDevTest/src/main/java/com/itx/test/infrastructure/adapter/ProductHttpClient.java
+/home/terraque/4_Josue/backendDevTest/src/main/java/com/itx/test/infrastructure/rest/ProductController.java
