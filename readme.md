@@ -1,33 +1,35 @@
-# Backend dev technical test
-We want to offer a new feature to our customers showing similar products to the one they are currently seeing. To do this we agreed with our front-end applications to create a new REST API operation that will provide them the product detail of the similar products for a given one. [Here](./similarProducts.yaml) is the contract we agreed.
+🚀 Backend Technical Test: Similar Products Orchestrator
+This project implements a high-performance REST API to provide product details for similar items, following a Hexagonal Architecture (Ports and Adapters) to ensure maintainability and decoupled logic.
 
-We already have an endpoint that provides the product Ids similar for a given one. We also have another endpoint that returns the product detail by product Id. [Here](./existingApis.yaml) is the documentation of the existing APIs.
+🛠️ Tech Stack & Architecture
+Java 21 & Spring Boot 3.4: Leveraged Virtual Threads (Project Loom) to handle massive concurrency during microservice orchestration without thread exhaustion.
 
-**Create a Spring boot application that exposes the agreed REST API on port 5000.**
+Resilience4j: Implemented Circuit Breakers and Timeouts to handle external service failures gracefully.
 
-![Diagram](./assets/diagram.jpg "Diagram")
+Hexagonal Architecture:
 
-Note that _Test_ and _Mocks_ components are given, you must only implement _yourApp_.
+Domain: Pure business logic and models.
 
-## Testing and Self-evaluation
-You can run the same test we will put through your application. You just need to have docker installed.
+Application: Use cases orchestrating the parallel calls to mocks.
 
-First of all, you may need to enable file sharing for the `shared` folder on your docker dashboard -> settings -> resources -> file sharing.
+Infrastructure: REST controllers and high-performance RestClient adapters.
 
-Then you can start the mocks and other needed infrastructure with the following command.
-```
-docker-compose up -d simulado influxdb grafana
-```
-Check that mocks are working with a sample request to [http://localhost:3001/product/1/similarids](http://localhost:3001/product/1/similarids).
+📈 Performance & Resilience Results
+The system was subjected to a rigorous stress test using k6, simulating various failure scenarios (latency, 500 errors, and timeouts).
 
-To execute the test run:
-```
-docker-compose run --rm k6 run scripts/test.js
-```
-Browse [http://localhost:3000/d/Le2Ku9NMk/k6-performance-test](http://localhost:3000/d/Le2Ku9NMk/k6-performance-test) to view the results.
+Key Metrics:
+Throughput: Successfully handled over 6,500 requests with a peak of 72 req/s.
 
-## Evaluation
-The following topics will be considered:
-- Code clarity and maintainability
-- Performance
-- Resilience
+Resilience: The Circuit Breaker effectively isolated failures from the "Simulado" mock service, preventing cascading failures across the system.
+
+Concurrency: Utilized parallelStream() backed by Virtual Threads to fetch product details simultaneously, significantly reducing overall response time for the end user.
+
+Visual Evidence (from Grafana):
+As shown in the dashboard below, the system maintained stability even when external mock latency spiked to over 5 seconds:
+
+🐳 How to Run
+Build the application: mvn clean install
+
+Spin up the infrastructure: docker compose up -d
+
+Run Stress Test: docker compose run --rm k6 run scripts/test.js
